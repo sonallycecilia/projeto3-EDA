@@ -50,8 +50,13 @@ public class ArvoreRubro {
             Node parent = node.parent;
             Node grandparent = parent.parent;
 
+            if (grandparent == null) {
+                break; // Se não há avô, interrompe o loop
+            }
+
             if (parent == grandparent.left) {
                 Node uncle = grandparent.right;
+
                 // Caso 1: O tio é vermelho -> Recolorimos
                 if (uncle != null && uncle.isRed) {
                     parent.isRed = false;
@@ -71,6 +76,7 @@ public class ArvoreRubro {
                 }
             } else {
                 Node uncle = grandparent.left;
+
                 // Simétrico ao caso anterior
                 if (uncle != null && uncle.isRed) {
                     parent.isRed = false;
@@ -90,6 +96,7 @@ public class ArvoreRubro {
         }
         root.isRed = false; // A raiz deve ser sempre preta
     }
+
 
     // Rotação à esquerda
     private void rotateLeft(Node node) {
@@ -156,5 +163,25 @@ public class ArvoreRubro {
 
         // A altura é o maior caminho entre os subárvores esquerda e direita, mais 1
         return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    // Método público de busca
+    public boolean search(int key) {
+        return searchRecursive(root, key);
+    }
+
+    // Método auxiliar recursivo para busca
+    private boolean searchRecursive(Node current, int key) {
+        if (current == null) {
+            return false; // Não encontrou a chave
+        }
+
+        if (key == current.key) {
+            return true; // Chave encontrada
+        } else if (key < current.key) {
+            return searchRecursive(current.left, key); // Busca na subárvore esquerda
+        } else {
+            return searchRecursive(current.right, key); // Busca na subárvore direita
+        }
     }
 }

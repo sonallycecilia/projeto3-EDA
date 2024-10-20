@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         /*
-        //GERANDO ARQUIVOS DA DATABASE
+        //GERANDO ARQUIVOS DB
         gerarDadosAleatorios(1000000, "desordenados_1000000");
         gerarDadosOrdenados(1000000, "ordenados_1000000", false);
         gerarDadosOrdenados(1000000, "ordenados50finais_1000000", true);
@@ -28,11 +28,11 @@ public class Main {
         gerarDadosRepetidos(1000000, "repetidos_1000000");
         */
 
-
+        /*
         //BINARIA
         ArvoreBinaria tree;
         int[] numeros;
-        /*
+
         numeros = lerArquivo("ordenados_1000000", 1000);
         tree = new ArvoreBinaria();
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
@@ -46,7 +46,6 @@ public class Main {
         System.out.printf("Altura total: %d\n\n", tree.height(tree.getRoot()));
         numeros = null;
         tree = null;
-        */
 
         tree = new ArvoreBinaria();
         numeros = lerArquivo("desordenados_3000000", 3000000);
@@ -60,12 +59,12 @@ public class Main {
             if(tree.buscar(numerosBusca[i])) { achados++; }
         }
         System.out.printf("Achados: %d\n", achados);
+        */
 
         /*
         //BALANCEADA
         ArvoreBalanceada tree;
         int[] numeros;
-
         tree = new ArvoreBalanceada();
         numeros = lerArquivo("ordenados50finais_1000000", 1000000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
@@ -87,21 +86,29 @@ public class Main {
         tree = null;
 
         tree = new ArvoreBalanceada();
-        numeros = lerArquivo("ordenados50finais_3000000", 3000000);
+        numeros = lerArquivo("desordenados_3000000", 3000000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
         System.out.printf("Altura total: %d\n" +
                         "Rotacoes direita: %d\n" +
                         "Rotacoes esquerda: %d\n\n",
                 tree.height(tree.getRoot()), tree.getRotationsRight(), tree.getRotationsLeft());
         numeros = null;
-        tree = null;
+
+        int[] numerosBusca = lerArquivo("busca_1000000", 10000000);
+        int achados = 0;
+        for (int i = 0; i < numerosBusca.length; i++){
+            if(tree.search(numerosBusca[i])) { achados++; }
+        }
+        System.out.printf("Achados: %d\n", achados);
          */
+
 
         /*
         //SPLAY
-        ArvoreSplay tree = new ArvoreSplay();
+        ArvoreSplay tree;
         int[] numeros;
 
+        tree = new ArvoreSplay();
         numeros = lerArquivo("ordenados_1000000", 1000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
         System.out.printf("Altura total: %d\n" +
@@ -122,21 +129,27 @@ public class Main {
         tree = null;
 
         tree = new ArvoreSplay();
-        numeros = lerArquivo("ordenados_3000000", 3000);
+        numeros = lerArquivo("desordenados_3000000", 3000000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
         System.out.printf("Altura total: %d\n" +
                         "Rotacoes direita: %d\n" +
                         "Rotacoes esquerda: %d\n\n",
                 tree.height(tree.getRoot()), tree.getRotationsRight(), tree.getRotationsLeft());
         numeros = null;
-        tree = null;
-        */
 
-        /*
+        int[] numerosBusca = lerArquivo("busca_1000000", 10000000);
+        int achados = 0;
+        for (int i = 0; i < numerosBusca.length; i++){
+            if(tree.search(numerosBusca[i])) { achados++; }
+        }
+        System.out.printf("Achados: %d\n", achados);
+         */
+
         //RUBRO
         ArvoreRubro tree;
         int[] numeros;
 
+        /*
         tree = new ArvoreRubro();
         numeros = lerArquivo("ordenados50finais1561_1000000", 1000000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
@@ -156,23 +169,27 @@ public class Main {
                 tree.height(tree.getRoot()), tree.getRotationsRight(), tree.getRotationsLeft());
         numeros = null;
         tree = null;
+         */
 
         tree = new ArvoreRubro();
-        numeros = lerArquivo("ordenados50finais_3000000", 3000000);
+        numeros = lerArquivo("desordenados_3000000", 3000000);
         for (int i = 0; i < numeros.length; i++){ tree.insert(numeros[i]); }
         System.out.printf("Altura total: %d\n" +
                         "Rotacoes direita: %d\n" +
                         "Rotacoes esquerda: %d\n\n",
                 tree.height(tree.getRoot()), tree.getRotationsRight(), tree.getRotationsLeft());
         numeros = null;
-        tree = null;
-        */
 
-
-
+        int[] numerosBusca = lerArquivo("busca_1000000", 10000000);
+        int achados = 0;
+        for (int i = 0; i < numerosBusca.length; i++){
+            if(tree.search(numerosBusca[i])) { achados++; }
+        }
+        System.out.printf("Achados: %d\n", achados);
 
     }
 
+    //métodos do main
     public static int[] lerArquivo(String nome, int qtd) {
         String path = DATABASE_PATH + File.separator + nome + ".txt";
         int[] data = new int[qtd];
